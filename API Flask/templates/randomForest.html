@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  
+  <div style="overflow-x: hidden;">
+    <h1  style="font-size: 36px;position:relative; left:20px;
+    color: #660033;">{{ title }}</h1><br>
+    <div class="image" style="background-image:url(static/images/rf.jpg);"></div>
+    <br>
+    <p class="verticalLine" style="text-align: justify;position: absolute;left: 50px;right: 100px;font-size: 16px;">
+      You can make predictions using a Random Forest Classifier fitted to the dataset. The hyperparameters choosen are the most optimal ones to perform an accuracy as high as possible. The accuracy obtained using these parameters was 0.6711. Some default values have been automatically filled. If you want to make your own prediction, fill in each feature value below to predict wether the article is popular or unpopular.
+    </p>
+    <br/><br/><br/><br/>
+    <p class="verticalLine" style="text-align: justify;position: relative;left: 50px;font-size: 20px;">
+       {{ prediction_text }}
+    </p>
+    <h2  style="font-size: 26px;position:relative; left:20px;
+    color: #660033;">Input Features Values</h2><br>
+    <div style="position: absolute;left: 50px;right: 100px;">
+    <form enctype="multipart/form-data" action="{{ url_for('predict')}}"method="POST">
+      {% for i in range(len1) %}
+      <div class="mb-3">
+        <label class="form-label">{{features1[i]}}</label>
+        <input type="number" step=0.001 class="form-control" name={{features1[i]}}  placeholder={{def1[i]}}>
+      </div>
+      {% endfor %}
+      {% for i in range(len2) %}
+      <label class="form-label">{{features2[i]}}</label>
+      <select class="form-select" name={{features2[i]}} aria-label="Default select example">
+        {% if def2[i]== 0 %}
+        <option value="0" selected="selected">False</option>
+        <option value="1">True</option>
+        {% else %}
+        <option value="0" >False</option>
+        <option value="1" selected="selected">True</option>
+        {% endif %}
+
+      </select>
+      {% endfor %}
+      {% for i in range(len3) %}
+      <div class="mb-3">
+        <label class="form-label">{{features3[i]}}</label>
+        <input type="number" step="0.001" class="form-control" name={{features3[i]}}  placeholder={{def3[i]}}>
+      </div>
+      {% endfor %}
+      {% for i in range(len4) %}
+      <label class="form-label">{{features4[i]}}</label>
+      <select class="form-select" name={{features4[i]}} aria-label="Default select example">
+        {% if def4[i]== 0 %}
+        <option value="0" selected="selected">False</option>
+        <option value="1">True</option>
+        {% else %}
+        <option value="0" >False</option>
+        <option value="1" selected="selected">True</option>
+        {% endif %}
+      </select>
+      {% endfor %}
+      {% for i in range(len5) %}
+      <div class="mb-3">
+        <label class="form-label">{{features5[i]}}</label>
+        <input type="number" step="0.001" class="form-control" name={{features5[i]}} placeholder={{def5[i]}}>
+      </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict Popularity Of The Article</button>
+    </form>
+    </div>
+  </div>
+  <br/>
+  <br/>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  
+  <div style="overflow-x: hidden;">
+    <h1  style="font-size: 36px;position:relative; left:20px;
+    color: #660033;">Machine Learning API</h1><br>
+    <div class="image" style="background-image:url(static/images/ml.jpg);"></div>
+    <br>
+    <p class="verticalLine" style="text-align: justify;position: absolute;left: 50px;right: 100px;font-size: 16px;">
+      In this API, I have deployed some Machine Learning Models used to make predictions on the dataset called <strong>Online News Popularity</strong>.
+      The dataset Online News Popularity takes 55 features to predict wether an article will be popular or not. The popularity depends on the number of time an article will be shared. A number of shares higher than 1 400 means that the article is a popular one.
+      The features used to make such a prediction come from the analysis of the article. There are some general features and some features found using NLP on the article.<br/>
+      To make some predictions, you can use the form in the prediction tab to fill in the values for each variable. the prediction will be displayed after pressing the 'predict' button.
+    </p>
+  </div>
+{% endblock %}

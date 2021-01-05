@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+  
+  <div style="overflow-x: hidden;">
+    <h1  style="font-size: 36px;position:relative; left:20px;
+    color: #660033;">{{ title }}</h1><br>
+    <div class="image" style="background-image:url(static/images/ai_.jpg);"></div>
+    <br>
+    <p class="verticalLine" style="text-align: justify;position: absolute;left: 50px;right: 100px;font-size: 16px;">
+      You can make predicions using a Gradient Boosting Classifier fitted to the dataset. The hyperparameters choosen are the most optimal ones to perform an accuracy as high as possible. The accuracy obtained using these parameters was 0.6703. Fill in each feature value below to predict wether the article is popular or unpopular. Please note that the best accuracy was achieved using the Random Forest Classifier.
+    </p>
+  </div>
+{% endblock %}
