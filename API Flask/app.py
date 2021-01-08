@@ -2,9 +2,12 @@
 from flask import Flask,render_template,request
 import pickle
 import numpy as np
+import json
 
 app = Flask(__name__, template_folder='templates')
 clf_rf = pickle.load(open('clf_rf.pkl', 'rb'))
+clf_gb = pickle.load(open('clf_gb.pkl', 'rb'))
+
 features1=['n_tokens_title', 'n_tokens_content', 'n_non_stop_unique_tokens','num_hrefs', 'num_self_hrefs', 'num_imgs', 'num_videos','average_token_length', 'num_keywords']
 features2=['data_channel_is_lifestyle','data_channel_is_entertainment', 'data_channel_is_bus','data_channel_is_socmed', 'data_channel_is_tech','data_channel_is_world']
 features3=['kw_min_min', 'kw_max_min', 'kw_min_max','kw_max_max', 'kw_avg_max', 'kw_min_avg', 'kw_max_avg', 'kw_avg_avg','self_reference_min_shares', 'self_reference_max_shares','self_reference_avg_sharess']
@@ -35,7 +38,7 @@ def randomForest():
 
 
 @app.route('/randomForest/prediction',methods=['POST'])
-def predict():
+def predictRF():
     features=[x for x in request.form.values()]
     default=[*default_values1,*default_values2,*default_values3,*default_values4,*default_values5]
     for i in range(len(features)):
@@ -53,13 +56,37 @@ def predict():
    		output = 'Unpopular'
     else:
    		output = 'Error'
-
     return render_template("randomForest.html",title='Random Forest Prediction',
                            prediction_text='The article should be {}'.format(output),**params)
 
 @app.route("/gradientBoosting")
 def gradientBoosting():
-    return render_template("gradientBoosting.html",title='Gradient Boosting Prediction')
+    return render_template("gradientBoosting.html",title='Gradient Boosting Prediction',**params)
+
+@app.route('/gradientBoosting/prediction',methods=['POST'])
+def predictGB():
+    features=[x for x in request.form.values()]
+    default=[*default_values1,*default_values2,*default_values3,*default_values4,*default_values5]
+    for i in range(len(features)):
+        if features[i]=='':
+            print(i)
+            print(default[i])
+            features[i]=default[i]
+    features=[float(x) for x in features]  
+    X = [np.array(features)]
+    print(X)
+    Y = clf_gb.predict(X)
+    if Y==1:
+    	output = 'Popular'
+    elif Y==0:
+   		output = 'Unpopular'
+    else:
+   		output = 'Error'
+
+    return render_template("gradientBoosting.html",title='Gradient Boosting Prediction',
+                           prediction_text='The article should be {}'.format(output),**params)
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
