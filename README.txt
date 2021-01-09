@@ -11,3 +11,8 @@ python app.py go to the localhost URL to see the API.
 ###### POWERPOINT ####### 
 The Powerpoint presentation, gathers all important information and process details of the dataset analysis 
 and the models building.
+
+###### CONCLUSION OF THE PREDICTION TASKS ######
+The regression did not perform well on this dataset. Classification tasks performed better. 
+Best models were Random Forest and Gradient Boosting classifiers with tuned parameters. These models have been deployed in the API.
+Best accuracy obtained : 67.1%, Best AUC : 73%
