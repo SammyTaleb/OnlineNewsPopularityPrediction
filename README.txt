@@ -1,3 +1,7 @@
+OBJECTIVES
+
+The objectives of this project was to explore and analyse the ONLINE NEWS POPULARITY dataset, which contains 60 attributes of 40k articles. The variable to predict is the number of shares of the article.  
+
 ###### JUPYTER NOTEBOOK ######
 To view the jupyter notebook, you can open the .ipynb file or run the API and go to the url:
 http:/localhost:5000/notebook
@@ -13,6 +17,6 @@ The Powerpoint presentation, gathers all important information and process detai
 and the models building.
 
 ###### CONCLUSION OF THE PREDICTION TASKS ######
-The regression did not perform well on this dataset. Classification tasks performed better. 
+The regression did not perform well on this dataset. Binary classification task performed better. 
 Best models were Random Forest and Gradient Boosting classifiers with tuned parameters. These models have been deployed in the API.
 Best accuracy obtained : 67.1%, Best AUC : 73%
